@@ -30,7 +30,7 @@ class WindowController: NSWindowController {
 
   override func windowDidLoad() {
     super.windowDidLoad()
-    if let window = window, let screen = NSScreen.main() {
+    if let window = window, let screen = NSScreen.main {
       let screenRect = screen.visibleFrame
       window.setFrame(NSRect(x: screenRect.origin.x, y: screenRect.origin.y, width: screenRect.width/2.0, height: screenRect.height), display: true)
     }
@@ -44,7 +44,7 @@ class WindowController: NSWindowController {
     openPanel.showsHiddenFiles      = false
     
     openPanel.beginSheetModal(for: self.window!) { (response) -> Void in
-      guard response == NSFileHandlingPanelOKButton else {return}
+      guard response.rawValue == NSFileHandlingPanelOKButton else {return}
       let viewController = self.contentViewController as? ViewController
       if let viewController = viewController, let URL = openPanel.url {
         viewController.loadDataForNewFolderWithUrl(URL)
