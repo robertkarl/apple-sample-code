@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13CB0C3E2586BF9100EA4F64 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB0C3C2586BF9100EA4F64 /* CollectionViewItem.swift */; };
+		13CB0C3F2586BF9100EA4F64 /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CB0C3D2586BF9100EA4F64 /* CollectionViewItem.xib */; };
 		872E8B7C1C034D4D008C0329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E8B7B1C034D4D008C0329 /* AppDelegate.swift */; };
 		872E8B7E1C034D4D008C0329 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E8B7D1C034D4D008C0329 /* ViewController.swift */; };
 		872E8B801C034D4D008C0329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 872E8B7F1C034D4D008C0329 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13CB0C3C2586BF9100EA4F64 /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		13CB0C3D2586BF9100EA4F64 /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
 		872E8B781C034D4D008C0329 /* SlidesMagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlidesMagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		872E8B7B1C034D4D008C0329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		872E8B7D1C034D4D008C0329 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				872E8B7B1C034D4D008C0329 /* AppDelegate.swift */,
+				13CB0C3C2586BF9100EA4F64 /* CollectionViewItem.swift */,
 				872E8B7D1C034D4D008C0329 /* ViewController.swift */,
 				872E8B8F1C034EE8008C0329 /* WindowController.swift */,
 			);
@@ -83,6 +88,7 @@
 		872E8B8C1C034DE9008C0329 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				13CB0C3D2586BF9100EA4F64 /* CollectionViewItem.xib */,
 				872E8B811C034D4D008C0329 /* Main.storyboard */,
 			);
 			name = Resources;
@@ -165,6 +171,7 @@
 			files = (
 				872E8B801C034D4D008C0329 /* Assets.xcassets in Resources */,
 				872E8B831C034D4D008C0329 /* Main.storyboard in Resources */,
+				13CB0C3F2586BF9100EA4F64 /* CollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +187,7 @@
 				872E8B901C034EE8008C0329 /* WindowController.swift in Sources */,
 				872E8B941C035259008C0329 /* ImageDirectoryLoader.swift in Sources */,
 				872E8B7C1C034D4D008C0329 /* AppDelegate.swift in Sources */,
+				13CB0C3E2586BF9100EA4F64 /* CollectionViewItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

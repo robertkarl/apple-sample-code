@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CollectionViewItem" customModule="SlidesMagic" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="m4f-W0-h9v" id="trs-GK-fbg"/>
+                <outlet property="textField" destination="hYO-Y6-OiK" id="iyr-g7-lTU"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-W0-h9v">
+                    <rect key="frame" x="0.0" y="30" width="480" height="242"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="leN-S4-PR4"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYO-Y6-OiK">
+                    <rect key="frame" x="222" y="0.0" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="EbH-Vv-Rbq">
+                        <font key="font" metaFont="system"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="m4f-W0-h9v" secondAttribute="trailing" id="IrB-6k-2eX"/>
+                <constraint firstAttribute="bottom" secondItem="hYO-Y6-OiK" secondAttribute="bottom" id="ItY-Tu-LD9"/>
+                <constraint firstItem="m4f-W0-h9v" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Khb-YD-lOr"/>
+                <constraint firstItem="hYO-Y6-OiK" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="kX1-MM-5UG"/>
+                <constraint firstAttribute="bottom" secondItem="m4f-W0-h9v" secondAttribute="bottom" constant="30" id="q2u-cn-n2k"/>
+                <constraint firstItem="m4f-W0-h9v" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="qCq-0N-IXa"/>
+            </constraints>
+            <point key="canvasLocation" x="-143" y="154"/>
+        </customView>
+        <collectionViewItem id="TPS-1J-klG" customClass="CollectionViewItem" customModule="SlidesMagic" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="m4f-W0-h9v" id="dem-A3-yDv"/>
+                <outlet property="textField" destination="hYO-Y6-OiK" id="6fX-MX-zcz"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="YUF-6K-PSH"/>
+            </connections>
+        </collectionViewItem>
+    </objects>
+</document>
