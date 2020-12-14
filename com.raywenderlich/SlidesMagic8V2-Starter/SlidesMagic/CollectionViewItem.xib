@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CollectionViewItem" customModule="SlidesMagic" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner">
             <connections>
                 <outlet property="imageView" destination="m4f-W0-h9v" id="trs-GK-fbg"/>
                 <outlet property="textField" destination="hYO-Y6-OiK" id="iyr-g7-lTU"/>
