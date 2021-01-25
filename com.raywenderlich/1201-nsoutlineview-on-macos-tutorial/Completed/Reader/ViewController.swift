@@ -25,6 +25,46 @@ import WebKit
 
 class ViewController: NSViewController {
   
+  override func keyDown(with event: NSEvent) {
+    interpretKeyEvents([event])
+  }
+  override func deleteBackward(_ sender: Any?) {
+    let selectedRow = outlineView.selectedRow
+    if selectedRow == -1 {
+      return
+    }
+    outlineView.beginUpdates()
+    if let item = outlineView.item(atRow: selectedRow) {
+      if let item = item as? Feed {
+        if let index = self.feeds.index( where: {$0.name == item.name }) {
+          self.feeds.remove(at: index)
+          outlineView.removeItems(at: IndexSet(integer: selectedRow), inParent: nil, withAnimation: .slideLeft)
+        }
+      }
+      else if let item = item as? FeedItem {
+        for feed in self.feeds {
+          if let index = feed.children.index(where: {$0.title == item.title}) {
+            feed.children.remove(at: index)
+            outlineView.removeItems(at: IndexSet(integer: index), inParent: feed, withAnimation: .slideLeft)
+          }
+        }
+      }
+    }
+    outlineView.endUpdates()
+  }
+  
+  @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
+    let item = sender.item(atRow: sender.clickedRow)
+    if item is Feed {
+      if sender.isItemExpanded(item) {
+        sender.collapseItem(item)
+      }
+      else {
+        sender.expandItem(item)
+      }
+    }
+  }
+  
   @IBOutlet weak var webView: WebView!
   @IBOutlet weak var outlineView: NSOutlineView!
   
@@ -41,6 +81,7 @@ class ViewController: NSViewController {
   var feeds = [Feed]()
   override func viewDidLoad() {
     super.viewDidLoad()
+    outlineView.rowHeight = 40;
   }
   
 }
@@ -75,17 +116,45 @@ let dateCellId = NSUserInterfaceItemIdentifier("DateCell")
 let dateColumnId = NSUserInterfaceItemIdentifier("DateColumn")
 
 extension ViewController : NSOutlineViewDelegate {
+  func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+    return 40;
+  }
   
-
+  func outlineViewSelectionDidChange(_ notification: Notification) {
+    guard let outlineView = notification.object as? NSOutlineView else {
+      return
+    }
+    
+    let selectedIndex = outlineView.selectedRow
+    guard let feedItem = outlineView.item(atRow: selectedIndex) as? FeedItem else {
+      return
+    }
+    let url = URL(string: feedItem.url)
+    if let url = url {
+      self.webView.mainFrame.load(URLRequest(url: url))
+    }
+  }
+  
   func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
     var view: NSTableCellView?
     
     if let feed = item as? Feed {
-      view = outlineView.makeView(withIdentifier: feedCellId,
-                                  owner: self) as? NSTableCellView
-      if let textField = view?.textField {
-        textField.stringValue = feed.name
-        textField.sizeToFit()
+      if tableColumn?.identifier == dateColumnId {
+        view = outlineView.makeView(withIdentifier: dateCellId, owner: self)
+          as? NSTableCellView
+        if let textField = view?.textField {
+          textField.stringValue = ""
+          textField.sizeToFit()
+        }
+        
+      }
+      else {
+        view = outlineView.makeView(withIdentifier: feedCellId,
+                                    owner: self) as? NSTableCellView
+        if let textField = view?.textField {
+          textField.stringValue = feed.name
+          textField.sizeToFit()
+        }
       }
     }
     else if let feedItem = item as? FeedItem {

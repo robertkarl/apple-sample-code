@@ -784,6 +784,7 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
+                                                        <action trigger="doubleAction" selector="doubleClickedItem:" target="XfG-lQ-9wD" id="JU7-xl-HTv"/>
                                                         <outlet property="dataSource" destination="XfG-lQ-9wD" id="AYr-e0-CgT"/>
                                                         <outlet property="delegate" destination="XfG-lQ-9wD" id="feS-8E-sCA"/>
                                                     </connections>
