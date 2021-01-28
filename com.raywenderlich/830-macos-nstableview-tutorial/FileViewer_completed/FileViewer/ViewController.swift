@@ -32,16 +32,25 @@ class ViewController: NSViewController {
   var directoryItems: [Metadata]?
   var sortOrder = Directory.FileOrder.Name
   var sortAscending = true
+  
+  func reloadFileList() {
+    directoryItems = directory?.contentsOrderedBy(sortOrder, ascending: sortAscending)
+    tableView.reloadData()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     statusLabel.stringValue = ""
+    tableView.delegate = self
+    tableView.dataSource = self
   }
 
   override var representedObject: Any? {
     didSet {
       if let url = representedObject as? URL {
         print("Represented object: \(url)")
+        directory = Directory(folderURL: url)
+        reloadFileList()
 
       }
     }
@@ -57,10 +66,11 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTableViewDelegate {
+  
   fileprivate enum CellIdentifiers {
-    static let nameCell = "NameCellID"
-    static let dateCell = "DateCellID"
-    static let sizeCell = "SizeCellID"
+    static let nameCell = NSUserInterfaceItemIdentifier("NameCellID")
+    static let dateCell = NSUserInterfaceItemIdentifier("DateCellID")
+    static let sizeCell = NSUserInterfaceItemIdentifier("SizeCellID")
   }
   
   func tableView(_ tableView: NSTableView,
@@ -68,12 +78,35 @@ extension ViewController: NSTableViewDelegate {
                  row: Int) -> NSView? {
     var image: NSImage?
     var text = ""
-    var cellID = ""
+    var cellID: NSUserInterfaceItemIdentifier?
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .long
     dateFormatter.timeStyle = .long
+    guard let item = directoryItems?[row] else {
+      return nil
+    }
     
-  
+    if tableColumn == tableView.tableColumns[0] {
+      image = item.icon
+      text = item.name
+      cellID = CellIdentifiers.nameCell
+    }
+    else if tableColumn == tableView.tableColumns[1] {
+      text = dateFormatter.string(from: item.date)
+      cellID = CellIdentifiers.sizeCell
+      // What happens if you set image here?
+    } else if tableColumn == tableView.tableColumns[2] {
+      text = item.isFolder ? "--" : sizeFormatter.string(fromByteCount: item.size)
+      cellID = CellIdentifiers.sizeCell
+    }
+    
+    if let cell = tableView.makeView(withIdentifier: cellID!, owner: nil) as? NSTableCellView {
+      cell.textField?.stringValue = text
+      cell.imageView?.image = image
+      return cell
+    }
+
+    return nil
   }
   
 }
