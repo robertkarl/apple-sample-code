@@ -26,6 +26,7 @@ class ViewController: NSViewController {
 
   @IBOutlet weak var statusLabel: NSTextField!
 
+  @IBOutlet weak var tableView: NSTableView!
   let sizeFormatter = ByteCountFormatter()
   var directory: Directory?
   var directoryItems: [Metadata]?
@@ -47,3 +48,32 @@ class ViewController: NSViewController {
   }
 }
 
+
+extension ViewController: NSTableViewDataSource {
+  func numberOfRows(in tableView: NSTableView) -> Int {
+    directoryItems?.count ?? 0
+  }
+  
+}
+
+extension ViewController: NSTableViewDelegate {
+  fileprivate enum CellIdentifiers {
+    static let nameCell = "NameCellID"
+    static let dateCell = "DateCellID"
+    static let sizeCell = "SizeCellID"
+  }
+  
+  func tableView(_ tableView: NSTableView,
+                 viewFor tableColumn: NSTableColumn?,
+                 row: Int) -> NSView? {
+    var image: NSImage?
+    var text = ""
+    var cellID = ""
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .long
+    
+  
+  }
+  
+}
